@@ -6,35 +6,35 @@ import Categories from "../../Data/Categories";
 import "./Home.css";
 
 const Home = ({ name, setName, fetchQuestions }) => {
-// states
-const [category, setCategory] = useState("");
-const [difficulty, setDifficulty] = useState("");
-const [error, setError] = useState(false);
+  // states
+  const [category, setCategory] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [error, setError] = useState(false);
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-// click button functionality
-const handleSubmit = () => {
-if(!name || !category || !difficulty){
-  setError(true);
-  return;
-} else {
-  setError(false);
-  fetchQuestions(category, difficulty);
-  navigate("/quiz")
-}
-}
-
+  // click button functionality
+  const handleSubmit = () => {
+    if (!name || !category || !difficulty) {
+      setError(true);
+      return;
+    } else {
+      setError(false);
+      fetchQuestions(category, difficulty);
+      navigate("/quiz");
+    }
+  };
 
   return (
     <div className="content">
+      
       {/* Heading */}
       <div className="settings">
         <span style={{ fontSize: 30 }}>Quiz Settings</span>
 
         <div className="settings__select">
           {error && <ErrorMessage>Please fill all the Fields</ErrorMessage>}
-          
+
           <TextField
             label="Enter Your Name"
             variant="outlined"
@@ -48,9 +48,8 @@ if(!name || !category || !difficulty){
             select
             label="Select Category"
             variant="outlined"
-            onChange = {(e) => setCategory(e.target.value)}
+            onChange={(e) => setCategory(e.target.value)}
             value={category}
-            
             style={{ marginBottom: 30 }}
           >
             {/*  category data */}
@@ -61,14 +60,13 @@ if(!name || !category || !difficulty){
             ))}
           </TextField>
 
-{/* difficulty */}
+          {/* difficulty */}
           <TextField
             select
             label="Select Difficulty"
             variant="outlined"
-             onChange={(e) => setDifficulty(e.target.value)}
+            onChange={(e) => setDifficulty(e.target.value)}
             value={difficulty}
-           
             style={{ marginBottom: 30 }}
           >
             <MenuItem key="Easy" value="easy">
@@ -82,9 +80,13 @@ if(!name || !category || !difficulty){
             </MenuItem>
           </TextField>
 
-{/* button to submit */}
-          <Button variant="contained" color="primary" size="large"
-          onClick={handleSubmit}>
+          {/* button to submit */}
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={handleSubmit}
+          >
             Start Quiz
           </Button>
         </div>

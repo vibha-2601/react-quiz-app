@@ -12,7 +12,7 @@ function App() {
   // states
   const [name, setName] = useState("");
   const [questions, setQuestions] = useState();
-  const [scores, setScores] = useState(0);
+  const [score, setScore] = useState(0);
 
   // API call (data)
   const fetchQuestions = async (category = "", difficulty = "") => {
@@ -39,7 +39,13 @@ function App() {
               />
             }
           />
-          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/quiz" element={<Quiz 
+          name={name}
+          questions={questions}
+          setQuestions={setQuestions}
+          score={score}
+          setScore={setScore}
+          />} />
           <Route path="/result" element={<Result />} />
         </Routes>
       </div>

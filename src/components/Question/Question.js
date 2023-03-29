@@ -12,6 +12,7 @@ const Question = ({
   score,
   setScore,
   correct,
+  setQuestions
 }) => {
   // states
   const [selected, setSelected] = useState();
@@ -48,6 +49,12 @@ const Question = ({
     } else setError("Please select an option first");
   };
 
+  // Quit 
+  const handleQuit = () => {
+    setCurrQues(0);
+    setQuestions();
+  }
+
   return (
     <div className="question">
       <h1>Question {currQues + 1}</h1>
@@ -76,6 +83,7 @@ const Question = ({
             color="secondary"
             size="large"
             style={{ width: 185 }}
+            onClick = {handleQuit}
             href="/"
           >
             Quit
